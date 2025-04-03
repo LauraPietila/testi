@@ -1,6 +1,6 @@
 name: Greet when issue is closed #the name of the workflow
-on: # This action will trigger when an issue is reopened or opened.
-  issues:
+on:
+  issue:
     types:
       - closed
 jobs: # The jobs that run in this workflow
@@ -12,7 +12,7 @@ jobs: # The jobs that run in this workflow
       - name: Comment on closed issue # The name of the step
         uses: peter-evans/create-or-update-comment@v1 # This step uses the "actions/github-script" action to execute a script that adds labels to the issue.
         with:
-          issue-number: ${{ github.event.isuue.number }}
+          issue-number: ${{ github.event.issue.number }}
           body: |
             Issue is resolved. Thank you!
 
