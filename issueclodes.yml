@@ -1,0 +1,24 @@
+name: Comment on Closed Issue
+
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  comment-on-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add comment to closed issue
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issue_number = context.issue.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number,
+              body: 'The issue is now resolved.'
+            });
