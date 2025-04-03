@@ -2,7 +2,8 @@ name: Greet when issue is closed
 
 on:
   issues:
-    types: [closed]
+    types: 
+      -closed
 
 jobs:
   label_issues:
